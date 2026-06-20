@@ -36,7 +36,7 @@ function LuaTokenizer:initSymbolsAndKeywords(version, useluajit)
 	-- if I use a load-test, the ext.load shim layer will break
 	-- if I use a load('goto=true') test without ext.load then load() doens't accept strings for 5.1 when the goto isn't a keyword, so I might as well just test if load can load any string ...
 	-- TODO separate language features from versions and put all the language options in a ctor table somewhere
-	do--if version >= '5.2' then
+	if version >= '5.2' or useluajit then
 		self.symbols:insert'::'	-- for labels .. make sure you insert it before ::
 		self.keywords['goto'] = true
 	end

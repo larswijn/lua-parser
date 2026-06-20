@@ -88,6 +88,8 @@ function Tokenizer:parseQuoteString()
 				local escapeCode = escapeCodes[esc]
 				if escapeCode then
 					s:insert(escapeCode)
+				elseif esc == 'z' and self.version >= '5.2' then
+					self:skipWhiteSpaces()
 				elseif esc == 'x' and self.version >= '5.2' then
 					esc = r:mustbe'%x' .. r:mustbe'%x'
 					s:insert(string.char(tonumber(esc, 16)))

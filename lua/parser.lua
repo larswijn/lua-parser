@@ -177,7 +177,7 @@ function LuaParser:parse_chunk()
 		local stmt = self:parse_stat()
 		if not stmt then break end
 		stmts:insert(stmt)
-		self:canbe(';', 'symbol')
+		while self:canbe(';', 'symbol') do end
 	until false
 	local laststat = self:parse_retstat()
 	if laststat then
